@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="Site">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Page" type="PageData" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="PageData">
+        <xs:sequence>
+            <xs:element name="Title">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Type" type="PageType"/>
+            <xs:element name="Chars" type="CharsData"/>
+            <xs:element name="Authorize" type="xs:boolean"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="CharsData">
+        <xs:sequence>
+            <xs:element name="Email" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="News" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="Archives" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="Voting" type="VotingType"/>
+            <xs:element name="Downloads" type="DownloadType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="PageType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ADVERTISING"/>
+            <xs:enumeration value="NEWS"/>
+            <xs:enumeration value="PORTAL"/>
+            <xs:enumeration value="MIRROR"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="VotingType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="ANONYMOUS"/>
+            <xs:enumeration value="AUTHORIZED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="DownloadType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FREE"/>
+            <xs:enumeration value="PAID"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
