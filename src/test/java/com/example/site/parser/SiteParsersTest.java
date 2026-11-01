@@ -1,4 +1,4 @@
 package com.example.site.parser;
 
-public class DomSiteParserTest {
+public class SiteParsersTest {
 }
