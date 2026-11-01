@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Приклад даних для перевірки за схемою (site.xml).
+  Містить 6 сторінок: усі чотири типи, різні режими голосування та завантажень.
+  Дані відповідають правилам: News тільки у NEWS, Archives тільки у MIRROR,
+  Email тільки у PORTAL, MIRROR та NEWS.
+-->
+<Site xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="../xsd/site.xsd">
+
+    <!-- Рекламна сторінка: без Email, News та Archives-->
+    <Page id="p1">
+        <Title>Mega Sale Banner</Title>
+        <Type>ADVERTISING</Type>
+        <Chars>
+            <Voting>NONE</Voting>
+            <Downloads>FREE</Downloads>
+        </Chars>
+        <Authorize>false</Authorize>
+    </Page>
+
+    <!-- Сторінка новин: є пошта та новини, голосування анонімне -->
+    <Page id="p2">
+        <Title>Daily News</Title>
+        <Type>NEWS</Type>
+        <Chars>
+            <Email>true</Email>
+            <News>true</News>
+            <Voting>ANONYMOUS</Voting>
+            <Downloads>FREE</Downloads>
+        </Chars>
+        <Authorize>false</Authorize>
+    </Page>
+
+    <!-- Портал: є пошта, голосування лише для авторизованих, завантаження платне -->
+    <Page id="p3">
+        <Title>City Portal</Title>
+        <Type>PORTAL</Type>
+        <Chars>
+            <Email>true</Email>
+            <Voting>AUTHORIZED</Voting>
+            <Downloads>PAID</Downloads>
+        </Chars>
+        <Authorize>true</Authorize>
+    </Page>
+
+    <!-- Дзеркало: є пошта та архіви для завантаження -->
+    <Page id="p4">
+        <Title>Software Mirror</Title>
+        <Type>MIRROR</Type>
+        <Chars>
+            <Email>true</Email>
+            <Archives>true</Archives>
+            <Voting>NONE</Voting>
+            <Downloads>PAID</Downloads>
+        </Chars>
+        <Authorize>true</Authorize>
+    </Page>
+
+    <!-- Сторінка новин, де Email присутній, але false (пошти немає).
+         -->
+    <Page id="p5">
+        <Title>Tech Weekly</Title>
+        <Type>NEWS</Type>
+        <Chars>
+            <Email>false</Email>
+            <News>true</News>
+            <Voting>AUTHORIZED</Voting>
+            <Downloads>FREE</Downloads>
+        </Chars>
+        <Authorize>true</Authorize>
+    </Page>
+
+
+    <Page id="p6">
+        <Title>Student Portal</Title>
+        <Type>PORTAL</Type>
+        <Chars>
+            <Email>true</Email>
+            <Voting>ANONYMOUS</Voting>
+            <Downloads>FREE</Downloads>
+        </Chars>
+        <Authorize>false</Authorize>
+    </Page>
+
+</Site>

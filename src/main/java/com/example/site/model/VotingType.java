@@ -1,4 +1,8 @@
 package com.example.site.model;
 
-public class VotingType {
+public enum VotingType {
+    NONE,
+    ANONYMOUS,
+    AUTHORIZED
+
 }

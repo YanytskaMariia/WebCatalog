@@ -1,4 +1,8 @@
 package com.example.site.model;
 
-public class PageType {
+public enum PageType {
+    ADVERTISING,
+    NEWS,
+    PORTAL,
+    MIRROR
 }

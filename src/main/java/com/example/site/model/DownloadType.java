@@ -1,4 +1,6 @@
 package com.example.site.model;
 
-public class DownloadType {
+public enum DownloadType {
+    FREE,
+    PAID
 }

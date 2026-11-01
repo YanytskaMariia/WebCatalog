@@ -41,3 +41,9 @@ build/
 output/
 logs/
 *.log
+target/
+.idea/
+*.iml
+output/
+logs/
+*.lck

@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Схема для валідації списку веб-сторінок (site.xsd).
+  Описує правила, за якими будуються та перевіряються всі дані про сайти.
+-->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
     <xs:element name="Site">
         <xs:complexType>
             <xs:sequence>
+                <!-- Список усіх сторінок сайту -->
                 <xs:element name="Page" type="PageData" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
+    <!-- Основні дані для кожної окремої сторінки -->
     <xs:complexType name="PageData">
         <xs:sequence>
+            <!-- Назва сторінки (Title). Обов'язкове поле, мінімум 1 символ -->
             <xs:element name="Title">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -18,23 +25,47 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
+
+            <!-- Тип сторінки (ADVERTISING (рекламна), NEWS (новинна), PORTAL (портал), MIRROR (дзеркало)) -->
             <xs:element name="Type" type="PageType"/>
+
+            <!-- Набір детальних характеристик сторінки -->
             <xs:element name="Chars" type="CharsData"/>
+
+            <!-- Чи потрібна авторизація для доступу: true (так) або false (ні) -->
             <xs:element name="Authorize" type="xs:boolean"/>
         </xs:sequence>
+
+        <!-- Унікальний текстовий ідентифікатор сторінки (наприклад, "p1", "p2"). Обов'язковий -->
         <xs:attribute name="id" type="xs:ID" use="required"/>
     </xs:complexType>
 
+    <!-- Набір додаткових характеристик сторінки -->
     <xs:complexType name="CharsData">
         <xs:sequence>
+            <!--
+              Необов'язкові поля (minOccurs="0") — додаються залежно від типу сторінки:
+              - Email: наявність пошти (тільки для PORTAL (портал), MIRROR (дзеркало), NEWS (новинна))
+              - News: наявність новин (тільки для NEWS (новинна))
+              - Archives: наявність архівів для завантаження (тільки для MIRROR (дзеркало))
+            -->
             <xs:element name="Email" type="xs:boolean" minOccurs="0"/>
             <xs:element name="News" type="xs:boolean" minOccurs="0"/>
             <xs:element name="Archives" type="xs:boolean" minOccurs="0"/>
+
+            <!-- Обов'язкові поля для будь-якої сторінки -->
             <xs:element name="Voting" type="VotingType"/>
             <xs:element name="Downloads" type="DownloadType"/>
         </xs:sequence>
     </xs:complexType>
 
+    <!--
+      Дозволені типи сторінок:
+      - ADVERTISING : Рекламна сторінка
+      - NEWS        : Сторінка новин
+      - PORTAL      : Портал
+      - MIRROR      : Дзеркало
+    -->
     <xs:simpleType name="PageType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="ADVERTISING"/>
@@ -44,6 +75,12 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <!--
+      Режими голосування на сторінці:
+      - NONE       : Голосування відсутнє
+      - ANONYMOUS  : Анонімне голосування
+      - AUTHORIZED : Голосування тільки після авторизації
+    -->
     <xs:simpleType name="VotingType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="NONE"/>
@@ -52,6 +89,11 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <!--
+      Умови завантаження матеріалів зі сторінки:
+      - FREE : Безкоштовне завантаження
+      - PAID : Платне завантаження
+    -->
     <xs:simpleType name="DownloadType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="FREE"/>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Порушує схему: атрибут id=p1 повторюється, а тип xs:ID вимагає унікальності -->
+<Site>
+    <Page id="p1">
+        <Title>First Page</Title>
+        <Type>ADVERTISING</Type>
+        <Chars>
+            <Voting>NONE</Voting>
+            <Downloads>FREE</Downloads>
+        </Chars>
+        <Authorize>false</Authorize>
+    </Page>
+    <Page id="p1">
+        <Title>Second Page</Title>
+        <Type>ADVERTISING</Type>
+        <Chars>
+            <Voting>NONE</Voting>
+            <Downloads>FREE</Downloads>
+        </Chars>
+        <Authorize>false</Authorize>
+    </Page>
+</Site>

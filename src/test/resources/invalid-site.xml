@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Порушує схему: Type має значення BLOG, якого немає в переліку -->
+<Site>
+    <Page id="p1">
+        <Title>Broken Page</Title>
+        <Type>BLOG</Type>
+        <Chars>
+            <Voting>NONE</Voting>
+            <Downloads>FREE</Downloads>
+        </Chars>
+        <Authorize>false</Authorize>
+    </Page>
+</Site>
